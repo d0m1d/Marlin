@@ -80,7 +80,7 @@
 #define Y_MIN_PIN          14
 #define Y_MAX_PIN          15
 #ifndef Z_MIN_PIN
-  #define Z_MIN_PIN          18
+  #define Z_MIN_PIN        18
 #endif
 #define Z_MAX_PIN          19
 

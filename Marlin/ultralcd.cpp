@@ -3179,6 +3179,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
   void lcd_move_menu_10mm() { _goto_manual_move(10); }
   void lcd_move_menu_1mm()  { _goto_manual_move( 1); }
   void lcd_move_menu_01mm() { _goto_manual_move( 0.1f); }
+  void lcd_move_menu_002mm() { _goto_manual_move( 0.02f); }
 
   void _lcd_move_distance_menu(const AxisEnum axis, const screenFunc_t func) {
     _manual_move_func_ptr = func;
@@ -3199,6 +3200,7 @@ void lcd_quick_feedback(const bool clear_buttons) {
     MENU_ITEM(submenu, MSG_MOVE_10MM, lcd_move_menu_10mm);
     MENU_ITEM(submenu, MSG_MOVE_1MM, lcd_move_menu_1mm);
     MENU_ITEM(submenu, MSG_MOVE_01MM, lcd_move_menu_01mm);
+    MENU_ITEM(submenu, MSG_MOVE_002MM, lcd_move_menu_002mm);
     END_MENU();
   }
   void lcd_move_get_x_amount()        { _lcd_move_distance_menu(X_AXIS, lcd_move_x); }
