@@ -1556,7 +1556,7 @@
   //#define USER_GCODE_1 "G28\nG29 W"
 
   #define USER_DESC_1 "Home & Preheat PLA"  // disable extruder, home all axes if at least one is untrusted, bed leveling ON, move nozzle away to manually wipe it
-  #define USER_GCODE_1 "M18 E\nG28 O\nM420 S1\nG1 X65 Y-50 Z10 F5000\nM190 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
+  #define USER_GCODE_1 "M18 E\nG28 O\nM420 S1\nG1 X65 Y-50 Z10 F5000\nM140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
 
   #define USER_DESC_2 "Disable Extruder Stepper"
   #define USER_GCODE_2 "M18 E"
