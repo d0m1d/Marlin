@@ -30,22 +30,21 @@
 #define BOARD_INFO_NAME   "MKS SGen-L"
 #define BOARD_WEBSITE_URL "github.com/makerbase-mks/MKS-SGEN_L"
 
-#define USES_DIAG_JUMPERS
+//#define USES_DIAG_JUMPERS
+
+
+//
+// General
+//
+#define PS_ON_PIN                          P2_00  // SERVO P2.0
+//#define KILL_PIN                         P1_24  // no kill pin yet (old one used with LCD connector is now NC anymore to uC)
+#define FIL_RUNOUT_PIN                     P1_26  // Y+
 
 //
 // Servos
 //
-#define SERVO0_PIN                         P1_23  // SERVO P1.23
-#define SERVO1_PIN                         P2_00  // SERVO P2.0
-
-//
-// Trinamic Stallguard pins
-//
-#define X_DIAG_PIN                         P1_29  // X-
-#define Y_DIAG_PIN                         P1_27  // Y-
-#define Z_DIAG_PIN                         P1_25  // Z-
-#define E0_DIAG_PIN                        P1_28  // X+
-#define E1_DIAG_PIN                        P1_26  // Y+
+#define SERVO0_PIN                         P1_23  // SERVO P1.23; is used/necessary for BLtouch probe
+//#define SERVO1_PIN                         P2_00  // SERVO P2.0
 
 //
 // Limit Switches
@@ -90,7 +89,33 @@
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN                  P1_24
+  #define Z_MIN_PROBE_PIN                  Z_MAX_PIN
+#endif
+
+//
+// Temperature Sensors
+// 3.3V max when defined as an analog input
+//
+#define TEMP_0_PIN                      P0_23_A0  // Analog Input A0 (TH1)
+#define TEMP_BED_PIN                    P0_24_A1  // Analog Input A1 (TB)
+#define TEMP_1_PIN                      P0_25_A2  // Analog Input A2 (TH2)
+
+//
+// Heaters / Fans
+//
+#define HEATER_BED_PIN                     P2_05
+#define HEATER_0_PIN                       P2_07
+#if HOTENDS == 1 && DISABLED(HEATERS_PARALLEL)
+  #ifndef FAN1_PIN
+    #define FAN1_PIN                       P2_06
+  #endif
+#else
+  #ifndef HEATER_1_PIN
+    #define HEATER_1_PIN                   P2_06
+  #endif
+#endif
+#ifndef FAN_PIN
+  #define FAN_PIN                          P2_04
 #endif
 
 //
@@ -130,6 +155,15 @@
 #ifndef E1_CS_PIN
   #define E1_CS_PIN                        P1_17
 #endif
+
+//
+// Trinamic Stallguard pins
+//
+//#define X_DIAG_PIN                         P1_29  // X-
+//#define Y_DIAG_PIN                         P1_27  // Y-
+//#define Z_DIAG_PIN                         P1_25  // Z-
+//#define E0_DIAG_PIN                        P1_28  // X+
+//#define E1_DIAG_PIN                        P1_26  // Y+
 
 //
 // Software SPI pins for TMC2130 stepper drivers
@@ -186,41 +220,6 @@
   // Reduce baud rate to improve software serial reliability
   #define TMC_BAUD_RATE                    19200
 #endif // HAS_TMC_UART
-
-//
-// Temperature Sensors
-// 3.3V max when defined as an analog input
-//
-#define TEMP_0_PIN                      P0_23_A0  // Analog Input A0 (TH1)
-#define TEMP_BED_PIN                    P0_24_A1  // Analog Input A1 (TB)
-#define TEMP_1_PIN                      P0_25_A2  // Analog Input A2 (TH2)
-
-//
-// Heaters / Fans
-//
-#define HEATER_BED_PIN                     P2_05
-#define HEATER_0_PIN                       P2_07
-#if HOTENDS == 1 && DISABLED(HEATERS_PARALLEL)
-  #ifndef FAN1_PIN
-    #define FAN1_PIN                       P2_06
-  #endif
-#else
-  #ifndef HEATER_1_PIN
-    #define HEATER_1_PIN                   P2_06
-  #endif
-#endif
-#ifndef FAN_PIN
-  #define FAN_PIN                          P2_04
-#endif
-
-//
-// Power Supply Control
-//
-#if ENABLED(MKS_PWC)
-  #define PS_ON_PIN                        P2_00  // SERVO1
-  #define KILL_PIN                         P1_24  // Z+
-  #define KILL_PIN_STATE                    HIGH
-#endif
 
 //
 // Misc. Functions
@@ -409,8 +408,16 @@
 #endif // HAS_WIRED_LCD
 
 //
+// Power Supply Control
+//
+#if ENABLED(MKS_PWC)
+  #define PS_ON_PIN                        P2_00  // SERVO1
+  #define KILL_PIN                         P1_24  // Z+
+  #define KILL_PIN_STATE                    HIGH
+#endif
+
+//
 // Other Pins
 //
 //#define PIN_P0_02                        P0_02  // AUX1 (Interrupt Capable/ADC/Serial Port 0)
 //#define PIN_P0_03                        P0_03  // AUX1 (Interrupt Capable/ADC/Serial Port 0)
-//#define PS_ON_PIN                        P1_23  // SERVO0 P1.23
