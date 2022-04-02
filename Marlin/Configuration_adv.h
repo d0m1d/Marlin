@@ -2679,7 +2679,7 @@
  */
 #if HAS_TRINAMIC_CONFIG
 
-  #define HOLD_MULTIPLIER    0.5  // Scales down the holding current from run current
+  #define HOLD_MULTIPLIER    0.6  // Scales down the holding current from run current
 
   /**
    * Interpolate microsteps to 256
@@ -2688,7 +2688,7 @@
   #define INTERPOLATE      true
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT       800        // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT       600        // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_CURRENT_HOME  X_CURRENT  // (mA) RMS current for sensorless homing
     #define X_MICROSTEPS     16        // 0..256
     #define X_RSENSE          0.11
@@ -2734,17 +2734,17 @@
     #define Z_RSENSE          0.11
     #define Z_CHAIN_POS      -1
     //#define Z_INTERPOLATE  true
-    //#define Z_HOLD_MULTIPLIER 0.5
+    #define Z_HOLD_MULTIPLIER 1.0
   #endif
 
   #if AXIS_IS_TMC(Z2)
-    #define Z2_CURRENT      Z_CURRENT
+    #define Z2_CURRENT       Z_CURRENT
     #define Z2_CURRENT_HOME Z2_CURRENT
     #define Z2_MICROSTEPS    Z_MICROSTEPS
     #define Z2_RSENSE         0.11
     #define Z2_CHAIN_POS     -1
-    //#define Z2_INTERPOLATE true
-    //#define Z2_HOLD_MULTIPLIER 0.5
+    //#define Z2_INTERPOLATE Z_INTERPOLATE
+    #define Z2_HOLD_MULTIPLIER Z_HOLD_MULTIPLIER
   #endif
 
   #if AXIS_IS_TMC(Z3)
@@ -2953,7 +2953,7 @@
   #define STEALTHCHOP_I
   #define STEALTHCHOP_J
   #define STEALTHCHOP_K
-  #define STEALTHCHOP_E
+  //#define STEALTHCHOP_E
 
   /**
    * Optimize spreadCycle chopper parameters by using predefined parameter sets
@@ -3019,18 +3019,18 @@
    */
   //#define HYBRID_THRESHOLD
 
-  #define X_HYBRID_THRESHOLD     150  // [mm/s]
-  #define X2_HYBRID_THRESHOLD    100
-  #define Y_HYBRID_THRESHOLD     150
-  #define Y2_HYBRID_THRESHOLD    100
-  #define Z_HYBRID_THRESHOLD       7
-  #define Z2_HYBRID_THRESHOLD      7
+  #define X_HYBRID_THRESHOLD     300  // [mm/s]
+  #define X2_HYBRID_THRESHOLD    300
+  #define Y_HYBRID_THRESHOLD     250
+  #define Y2_HYBRID_THRESHOLD    250
+  #define Z_HYBRID_THRESHOLD       8
+  #define Z2_HYBRID_THRESHOLD      8
   #define Z3_HYBRID_THRESHOLD      3
   #define Z4_HYBRID_THRESHOLD      3
   #define I_HYBRID_THRESHOLD       3
   #define J_HYBRID_THRESHOLD       3
   #define K_HYBRID_THRESHOLD       3
-  #define E0_HYBRID_THRESHOLD     30
+  #define E0_HYBRID_THRESHOLD     36
   #define E1_HYBRID_THRESHOLD     30
   #define E2_HYBRID_THRESHOLD     30
   #define E3_HYBRID_THRESHOLD     30

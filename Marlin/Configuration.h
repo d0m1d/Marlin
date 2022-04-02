@@ -132,8 +132,8 @@
  * Currently Ethernet (-2) is only supported on Teensy 4.1 boards.
  * :[-2, -1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-//#define SERIAL_PORT_2 -1
-//#define BAUDRATE_2 250000   // Enable to override BAUDRATE
+//#define SERIAL_PORT_2 0
+//#define BAUDRATE_2 250000     // Enable to override BAUDRATE
 
 /**
  * Select a third serial port on the board to use for communication with the host.
@@ -944,11 +944,12 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 7, 100 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 200, 8, 60 }  // gilt für stealthchop XYZ, mit spreadcycle mehr möglich (aber hybrid funktioniert scheinbar nicht so gut)
+                                      // E0 stealthchop nur 37 möglich => immer spreadcycle (in der Nähe von 35 is spreadcycle iwi auch leiser)
 
 #define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
-  #define MAX_FEEDRATE_EDIT_VALUES    { 300, 300, 12, 120 } // ...or, set your own edit limits
+  #define MAX_FEEDRATE_EDIT_VALUES    { 300, 250, 9.5, 120 } // ...or, set your own edit limits
 #endif
 
 /**

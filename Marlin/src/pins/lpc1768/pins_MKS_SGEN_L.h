@@ -28,7 +28,7 @@
 #include "env_validate.h"
 
 #define BOARD_INFO_NAME   "MKS SGen-L"
-#define BOARD_WEBSITE_URL "github.com/makerbase-mks/MKS-SGEN_L"
+#define BOARD_WEBSITE_URL "https://github.com/makerbase-mks/SGEN_L"
 
 //#define USES_DIAG_JUMPERS
 
