@@ -29,7 +29,7 @@
   #error "MKS BASE 1.4 only supports up to 2 hotends / E-steppers. Comment out this line to continue."
 #endif
 
-#define BOARD_INFO_NAME "MKS BASE 1.4"
+#define BOARD_INFO_NAME "MKS BASE 1.4"  // V1.6: https://github.com/makerbase-mks/MKS-BASE
 #define MKS_BASE_VERSION                      14
 
 //
@@ -38,11 +38,13 @@
 #define FAN_PIN                                9  // PH6 ** Pin18 ** PWM9
 
 // Other Mods
+#define SERVO0_PIN                            11
+#define SERVO1_PIN                            12  // PB6 ** Pin25 ** D12
 
-#define SERVO3_PIN                            12  // PB6 ** Pin25 ** D12
-#define PS_ON_PIN                              2  // X+ // PE4 ** Pin6  ** PWM2       **MUST BE HARDWARE PWM
-#define FILWIDTH_PIN                          15  // Y+ // PJ0 ** Pin63 ** USART3_RX  **Pin should have a pullup!
-#define FIL_RUNOUT_PIN                        19  // Z+ // PD2 ** Pin45 ** USART1_RX
+
+//#define PS_ON_PIN                              2  // X+ // PE4 ** Pin6  ** PWM2       **MUST BE HARDWARE PWM
+//#define FILWIDTH_PIN                          15  // Y+ // PJ0 ** Pin63 ** USART3_RX  **Pin should have a pullup!
+//#define FIL_RUNOUT_PIN                        19  // Z+ // PD2 ** Pin45 ** USART1_RX
 
 #ifndef RGB_LED_R_PIN
   #define RGB_LED_R_PIN                       50

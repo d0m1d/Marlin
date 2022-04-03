@@ -40,9 +40,9 @@
   // M3/M4/M5 - Spindle/Laser Control
   //
   #if HAS_CUTTER
-    #define SPINDLE_LASER_PWM_PIN              2  // Hardware PWM
-    #define SPINDLE_LASER_ENA_PIN             15  // Pullup!
-    #define SPINDLE_DIR_PIN                   19
+    #define SPINDLE_LASER_PWM_PIN              2  // X+ // PE4 ** Pin6  ** PWM2  **Hardware PWM
+    #define SPINDLE_LASER_ENA_PIN             15  // Y+ // PJ0 ** Pin63 ** USART3_RX  **external Pullup!
+    // #define SPINDLE_DIR_PIN                   19
   #endif
 
   #ifndef CASE_LIGHT_PIN
