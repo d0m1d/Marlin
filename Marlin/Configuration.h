@@ -933,18 +933,20 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 1600 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 1600 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
+ * absolut max. step freq is 40kHz
+ * marlin stepping modes: 0-10kHz: single steps, 10-20kHz: double steps, above 20kHz: quad stepping
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 10 }
+#define DEFAULT_MAX_FEEDRATE          { 150, 150, 12 }
 
 #define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
-  #define MAX_FEEDRATE_EDIT_VALUES    { 300, 300, 12 } // ...or, set your own edit limits
+  #define MAX_FEEDRATE_EDIT_VALUES    { 250, 250, 20 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -1336,9 +1338,9 @@
 // @section machine
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
-#define INVERT_X_DIR false
-#define INVERT_Y_DIR true
-#define INVERT_Z_DIR false
+#define INVERT_X_DIR true
+#define INVERT_Y_DIR false
+#define INVERT_Z_DIR true
 //#define INVERT_I_DIR false
 //#define INVERT_J_DIR false
 //#define INVERT_K_DIR false
@@ -1384,8 +1386,8 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 400
-#define Y_BED_SIZE 400
+#define X_BED_SIZE 440
+#define Y_BED_SIZE 440
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1760,7 +1762,7 @@
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (4*60) }
+#define HOMING_FEEDRATE_MM_M { (45*60), (45*60), (4*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
