@@ -1399,11 +1399,11 @@
   #if EITHER(HAS_MARLINUI_HD44780, IS_TFTGLCD_PANEL)
     #define LCD_PROGRESS_BAR            // Show a progress bar on HD44780 LCDs for SD printing
     #if ENABLED(LCD_PROGRESS_BAR)
-      #define PROGRESS_BAR_BAR_TIME 2000  // (ms) Amount of time to show the bar
+      #define PROGRESS_BAR_BAR_TIME 3000  // (ms) Amount of time to show the bar
       #define PROGRESS_BAR_MSG_TIME 3000  // (ms) Amount of time to show the status message
-      #define PROGRESS_MSG_EXPIRE   0     // (ms) Amount of time to retain the status message (0=forever)
+      #define PROGRESS_MSG_EXPIRE   30000 // (ms) Amount of time to retain the status message (0=forever)
       //#define PROGRESS_MSG_ONCE         // Show the message for MSG_TIME then clear it
-      #define LCD_PROGRESS_BAR_TEST     // Add a menu item to test the progress bar
+      #define LCD_PROGRESS_BAR_TEST       // Add a menu item to test the progress bar
     #endif
   #endif
 #endif
@@ -3864,7 +3864,7 @@
   #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
 
   #define MAIN_MENU_ITEM_1_DESC "Home & Preheat " PREHEAT_1_LABEL  // disable extruder, home all axes if at least one is untrusted, bed leveling ON, move nozzle away to manually wipe it
-  #define MAIN_MENU_ITEM_1_GCODE "M18 E\nG28 O\nM420 S1\nG1 X65 Y-50 Z10 F5000\nM140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
+  #define MAIN_MENU_ITEM_1_GCODE "M18 E\nG28 O\nM420 S1\nG1 X65 Y-50 Z10 F5000\nM140 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nM104 S50"
   //#define MAIN_MENU_ITEM_1_CONFIRM          // Show a confirmation dialog before this action
 
   #define MAIN_MENU_ITEM_2_DESC "Disable Extruder Stepper"
