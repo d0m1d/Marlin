@@ -936,12 +936,15 @@
  * Default Axis Steps Per Unit (steps/mm)
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
+ *                                    MICROSTEPS from config_adv under TMC2208...; float values obtained from previous 16 microstepping
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80.17, 80.17, 1599.9*Z_MICROSTEPS/16, 407.75*E0_MICROSTEPS/16 }  // BMG Extruder
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80.17*X_MICROSTEPS/16, 80.17*Y_MICROSTEPS/16, 1599.9*Z_MICROSTEPS/16, 407.75*E0_MICROSTEPS/16 }  // BMG Extruder
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
+ * absolut max. step freq is 40kHz
+ * marlin stepping modes: 0-10kHz: single steps, 10-20kHz: double steps, above 20kHz: quad stepping
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
 #define DEFAULT_MAX_FEEDRATE          { 300, 200, 8, 60 }  // gilt für stealthchop XYZ, mit spreadcycle mehr möglich (aber hybrid funktioniert scheinbar nicht so gut)
