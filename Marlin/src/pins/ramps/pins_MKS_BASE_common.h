@@ -39,9 +39,9 @@
   //
   // M3/M4/M5 - Spindle/Laser Control
   //
-  #if HAS_CUTTER
-    #define SPINDLE_LASER_PWM_PIN              2  // X+ // PE4 ** Pin6  ** PWM2  **Hardware PWM
-    #define SPINDLE_LASER_ENA_PIN             15  // Y+ // PJ0 ** Pin63 ** USART3_RX  **external Pullup!
+  #if HAS_CUTTER && !defined(SPINDLE_LASER_ENA_PIN)
+    #define SPINDLE_LASER_PWM_PIN              2  // X+ // PE4 ** Pin6  ** PWM2  **Hardware PWM => schlechte Wahl, da U-Teiler und kein R zw. uC-Pin und C ("TP verkehrt")
+    #define SPINDLE_LASER_ENA_PIN             15  // Y+ // PJ0 ** Pin63 ** USART3_RX  **external Pullup! => schlechte Wahl, siehe PWM Pin
     // #define SPINDLE_DIR_PIN                   19
   #endif
 

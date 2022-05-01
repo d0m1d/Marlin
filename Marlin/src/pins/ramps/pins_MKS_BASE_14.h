@@ -41,24 +41,29 @@
 #define SERVO0_PIN                            11
 #define SERVO1_PIN                            12  // PB6 ** Pin25 ** D12
 
+// #define SPINDLE_LASER_PWM_PIN                    // 
+// #define SPINDLE_LASER_ENA_PIN                   // 
+
+#define AIR_EVACUATION_PIN                    10  // E0 Mosfet
+#define AIR_ASSIST_PIN                         7  // E1 Mosfet
 
 //#define PS_ON_PIN                              2  // X+ // PE4 ** Pin6  ** PWM2       **MUST BE HARDWARE PWM
 //#define FILWIDTH_PIN                          15  // Y+ // PJ0 ** Pin63 ** USART3_RX  **Pin should have a pullup!
 //#define FIL_RUNOUT_PIN                        19  // Z+ // PD2 ** Pin45 ** USART1_RX
 
-#ifndef RGB_LED_R_PIN
-  #define RGB_LED_R_PIN                       50
-#endif
-#ifndef RGB_LED_R_PIN
-  #define RGB_LED_G_PIN                       51
-#endif
-#ifndef RGB_LED_R_PIN
-  #define RGB_LED_B_PIN                       52
-#endif
+// #ifndef RGB_LED_R_PIN
+//   #define RGB_LED_R_PIN                       50
+// #endif
+// #ifndef RGB_LED_R_PIN
+//   #define RGB_LED_G_PIN                       51
+// #endif
+// #ifndef RGB_LED_R_PIN
+//   #define RGB_LED_B_PIN                       52
+// #endif
 
-#ifndef CASE_LIGHT_PIN
-  #define CASE_LIGHT_PIN                      11  // PB5 ** Pin24 ** PWM11
-#endif
+// #ifndef CASE_LIGHT_PIN
+//   #define CASE_LIGHT_PIN                      11  // PB5 ** Pin24 ** PWM11
+// #endif
 
 #include "pins_MKS_BASE_common.h" // ... RAMPS
 
