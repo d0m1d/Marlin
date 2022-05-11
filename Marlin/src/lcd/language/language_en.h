@@ -141,6 +141,7 @@ namespace Language_en {
   LSTR MSG_FLOWMETER_FAULT                = _UxGT("Coolant Flow Fault");
   LSTR MSG_SPINDLE_TOGGLE                 = _UxGT("Toggle Spindle");
   LSTR MSG_SPINDLE_EVAC_TOGGLE            = _UxGT("Toggle Vacuum");
+  LSTR MSG_SPINDLE_ASSIST_TOGGLE          = _UxGT("Air Assist");
   LSTR MSG_SPINDLE_FORWARD                = _UxGT("Spindle Forward");
   LSTR MSG_SPINDLE_REVERSE                = _UxGT("Spindle Reverse");
   LSTR MSG_SWITCH_PS_ON                   = _UxGT("Switch Power On");

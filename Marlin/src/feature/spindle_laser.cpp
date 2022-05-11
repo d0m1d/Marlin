@@ -124,7 +124,7 @@ void SpindleLaser::apply_power(const uint8_t opwr) {
       ocr_off();
       isReady = false;
     }
-    else if (ENABLED(CUTTER_POWER_RELATIVE) || enabled()) {
+    else if (/*ENABLED(CUTTER_POWER_RELATIVE) ||*/ enabled()) { // sonst enable pin immer ON
       set_ocr(power);
       isReady = true;
     }
@@ -161,8 +161,8 @@ void SpindleLaser::apply_power(const uint8_t opwr) {
 
 #if ENABLED(AIR_ASSIST)
   // Enable / disable air assist
-  void SpindleLaser::air_assist_enable()  { WRITE(AIR_ASSIST_PIN,  AIR_ASSIST_PIN); } // Turn ON
-  void SpindleLaser::air_assist_disable() { WRITE(AIR_ASSIST_PIN, !AIR_ASSIST_PIN); } // Turn OFF
+  void SpindleLaser::air_assist_enable()  { WRITE(AIR_ASSIST_PIN,  AIR_ASSIST_ACTIVE); } // Turn ON
+  void SpindleLaser::air_assist_disable() { WRITE(AIR_ASSIST_PIN, !AIR_ASSIST_ACTIVE); } // Turn OFF
   void SpindleLaser::air_assist_toggle()  { TOGGLE(AIR_ASSIST_PIN); } // Toggle state
 #endif
 

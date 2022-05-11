@@ -36,13 +36,14 @@
 // Heaters / Fans
 //
 #define FAN_PIN                                9  // PH6 ** Pin18 ** PWM9
+#define FAN1_PIN                              -1  // dummy wg. RAMPS.h
 
 // Other Mods
-#define SERVO0_PIN                            11
-#define SERVO1_PIN                            12  // PB6 ** Pin25 ** D12
+#define SERVO0_PIN                            11  // PB5 ** Pin24
+// #define SERVO1_PIN                            12  // PB6 ** Pin25
 
-// #define SPINDLE_LASER_PWM_PIN                    // 
-// #define SPINDLE_LASER_ENA_PIN                   // 
+#define SPINDLE_LASER_PWM_PIN                  8  // heated Bed, PH5 ** Pin17 ** PWM8  **Hardware PWM
+#define SPINDLE_LASER_ENA_PIN                 12  // PB6 ** Pin25
 
 #define AIR_EVACUATION_PIN                    10  // E0 Mosfet
 #define AIR_ASSIST_PIN                         7  // E1 Mosfet
