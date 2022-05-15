@@ -56,6 +56,13 @@ public:
     return cpwr ? round(100.0f * (cpwr - power_floor) / power_range) : 0;
   }
 
+  // Convert configured power range to ocr (PWM255)
+  static const inline uint8_t cpwr_to_ocr(const cutter_cpower_t cpwr) {
+    constexpr cutter_cpower_t power_floor = TERN(CUTTER_POWER_RELATIVE, SPEED_POWER_MIN, 0),
+                              power_range = SPEED_POWER_MAX - power_floor;
+    return cpwr ? round(255.0f * (cpwr - power_floor) / power_range) : 0;
+  }
+
   // Convert a cpower (e.g., SPEED_POWER_STARTUP) to unit power (upwr, upower),
   // which can be PWM, Percent, Servo angle, or RPM (rel/abs).
   static const inline cutter_power_t cpwr_to_upwr(const cutter_cpower_t cpwr) { // STARTUP power to Unit power
@@ -137,7 +144,7 @@ public:
         #elif CUTTER_UNIT_IS(PERCENT)
           pct_to_ocr(upwr)
         #else
-          pct_to_ocr(cpwr_to_pct(upwr))
+          cpwr_to_ocr(upwr) // before it was rpm -> % -> ocr (2.55 times resolution was lost then)
         #endif
       );
     }
@@ -160,7 +167,7 @@ public:
           upwr = cutter_power_t(
               (pwr < pct_to_ocr(min_pct)) ? pct_to_ocr(min_pct) // Use minimum if set below
             : (pwr > pct_to_ocr(max_pct)) ? pct_to_ocr(max_pct) // Use maximum if set above
-            :  pwr
+            :  pwr                                              // OCR
           );
           break;
         case _CUTTER_POWER_PERCENT:
@@ -174,7 +181,7 @@ public:
           upwr = cutter_power_t(
               (pwr < SPEED_POWER_MIN) ? SPEED_POWER_MIN         // Use minimum if set below
             : (pwr > SPEED_POWER_MAX) ? SPEED_POWER_MAX         // Use maximum if set above
-            : pwr                                               // Calculate OCR value
+            : pwr                                               // RPM
           );
           break;
         default: break;
