@@ -39,6 +39,7 @@
 #endif
 
 #define PCT_TO_PWM(X) ((X) * 255 / 100)
+#define PWM_TO_PCT(X) ((X) * 100 / 255)
 #define PCT_TO_SERVO(X) ((X) * 180 / 100)
 
 // #define _MAP(N,S1,S2,D1,D2) ((N)*_MAX((D2)-(D1),0)/_MAX((S2)-(S1),1)+(D1))
@@ -46,6 +47,7 @@
 class SpindleLaser {
 public:
   static const inline uint8_t pct_to_ocr(const_float_t pct) { return uint8_t(PCT_TO_PWM(pct)); }
+  static const inline uint8_t ocr_to_pct(const uint8_t ocr) { return uint8_t(PWM_TO_PCT(ocr)); }
 
   // cpower = configured values (e.g., SPEED_POWER_MAX)
 
@@ -62,6 +64,12 @@ public:
                               power_range = SPEED_POWER_MAX - power_floor;
     return cpwr ? round(255.0f * (cpwr - power_floor) / power_range) : 0;
   }
+  // Convert ocr (PWM255) to configured power range
+  static const inline cutter_power_t ocr_to_cpwr(const uint8_t ocr) {
+    constexpr cutter_cpower_t power_floor = TERN(CUTTER_POWER_RELATIVE, SPEED_POWER_MIN, 0),
+                              power_range = SPEED_POWER_MAX - power_floor;
+    return ocr ? round(ocr / 255.0f * power_range + power_floor) : power_floor;
+  }
 
   // Convert a cpower (e.g., SPEED_POWER_STARTUP) to unit power (upwr, upower),
   // which can be PWM, Percent, Servo angle, or RPM (rel/abs).
@@ -76,7 +84,7 @@ public:
         #elif CUTTER_UNIT_IS(SERVO)       // to SERVO angle
           PCT_TO_SERVO(cpwr_to_pct(cpwr))
         #else                             // to PWM
-          PCT_TO_PWM(cpwr_to_pct(cpwr))
+          cpwr_to_ocr(cpwr)
         #endif
       #else
         // Laser configured values are in PCT
@@ -145,6 +153,20 @@ public:
           pct_to_ocr(upwr)
         #else
           cpwr_to_ocr(upwr) // before it was rpm -> % -> ocr (2.55 times resolution was lost then)
+        #endif
+      );
+    }
+    /**
+     * Update output for OCR->power translation
+     */
+    static cutter_power_t ocr_to_upower(const uint8_t ocr) {
+      return cutter_power_t(
+        #if CUTTER_UNIT_IS(PWM255)
+          ocr
+        #elif CUTTER_UNIT_IS(PERCENT)
+          ocr_to_pct(ocr)
+        #else
+          ocr_to_cpwr(ocr)
         #endif
       );
     }

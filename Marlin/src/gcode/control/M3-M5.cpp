@@ -109,8 +109,9 @@ void GcodeSuite::M3_M4(const bool is_M4) {
 
   #if ENABLED(SPINDLE_LASER_USE_PWM)
     if (parser.seenval('O')) {
-      cutter.unitPower = cutter.power_to_range(parser.value_byte(), 0);
-      cutter.ocr_set_power(cutter.unitPower); // The OCR is a value from 0 to 255 (uint8_t)
+      uint8_t ocr = cutter.power_to_range(parser.value_byte(), _CUTTER_POWER_PWM255);
+      cutter.unitPower = cutter.ocr_to_upower(ocr); // fix bug: now O parameter recognized and converted to pwrUnit
+      cutter.ocr_set_power(ocr); // The OCR is a value from 0 to 255 (uint8_t)
     }
     else
       cutter.set_power(cutter.upower_to_ocr(get_s_power()));
