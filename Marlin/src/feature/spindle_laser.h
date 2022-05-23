@@ -118,7 +118,7 @@ public:
   static void init();
 
   #if ENABLED(MARLIN_DEV_MODE)
-    static void refresh_frequency() { set_pwm_frequency(pin_t(SPINDLE_LASER_PWM_PIN), frequency); }
+    static void refresh_frequency() { hal.set_pwm_frequency(pin_t(SPINDLE_LASER_PWM_PIN), frequency); }
   #endif
 
   // Modifying this function should update everywhere
@@ -271,7 +271,7 @@ public:
     }
   #endif
 
-  #if HAS_LCD_MENU
+  #if HAS_MARLINUI_MENU
     static void enable_with_dir(const bool reverse) {
       isReady = true;
       const uint8_t ocr = TERN(SPINDLE_LASER_USE_PWM, upower_to_ocr(menuPower), 255);
@@ -308,7 +308,7 @@ public:
       }
     #endif
 
-  #endif // HAS_LCD_MENU
+  #endif // HAS_MARLINUI_MENU
 
   #if ENABLED(LASER_POWER_INLINE)
     /**
