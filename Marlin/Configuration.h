@@ -944,9 +944,9 @@
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  * 16er microstepping, 200fullsteps/U, 16 teeth GT2 pulley for xy
  * 16er microstepping, 200fullsteps/U, 2mm ACME for z
- * steps not calibrated yet
+ * steps calibrated (X: +-0.2/430mm, Y: +-0.2/430mm, Z: +-0.1/99mm) 28.05.2022
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 1600 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100.03, 100.04, 1601 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1218,7 +1218,7 @@
 #define PROBING_MARGIN 10
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_FEEDRATE (100*60)
+#define XY_PROBE_FEEDRATE (70*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST (4*60)
@@ -1410,8 +1410,8 @@
 // @section machine
 
 // The size of the printable area
-#define X_BED_SIZE 450
-#define Y_BED_SIZE 450
+#define X_BED_SIZE 445
+#define Y_BED_SIZE 445
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -1920,14 +1920,14 @@
  *    P1  Raise the nozzle always to Z-park height.
  *    P2  Raise the nozzle by Z-park amount, limited to Z_MAX_POS.
  */
-//#define NOZZLE_PARK_FEATURE
+#define NOZZLE_PARK_FEATURE
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }
+  #define NOZZLE_PARK_POINT { (X_MAX_POS), (Y_MAX_POS), Z_MAX_POS }
   #define NOZZLE_PARK_MOVE          0   // Park motion: 0 = XY Move, 1 = X Only, 2 = Y Only, 3 = X before Y, 4 = Y before X
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
-  #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
+  #define NOZZLE_PARK_XY_FEEDRATE  70   // (mm/s) X and Y axes feedrate (also used for delta Z axis)
   #define NOZZLE_PARK_Z_FEEDRATE    5   // (mm/s) Z axis feedrate (not used for delta printers)
 #endif
 
