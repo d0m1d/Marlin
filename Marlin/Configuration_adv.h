@@ -3870,8 +3870,8 @@
   #define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
   #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
 
-  #define MAIN_MENU_ITEM_1_DESC "Set Z pos to 0"
-  #define MAIN_MENU_ITEM_1_GCODE "G92 Z0"
+  #define MAIN_MENU_ITEM_1_DESC "Set Z pos to 0, move Z up"
+  #define MAIN_MENU_ITEM_1_GCODE "G92 Z0\nG0 Z20"
   //#define MAIN_MENU_ITEM_1_CONFIRM          // Show a confirmation dialog before this action
 
   // #define MAIN_MENU_ITEM_2_DESC "Preheat for " PREHEAT_1_LABEL
