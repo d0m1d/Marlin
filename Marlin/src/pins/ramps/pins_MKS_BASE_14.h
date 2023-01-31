@@ -39,8 +39,8 @@
 #define FAN1_PIN                              -1  // dummy wg. RAMPS.h
 
 // Other Mods
-#define SERVO0_PIN                            11  // PB5 ** Pin24
-// #define SERVO1_PIN                            12  // PB6 ** Pin25
+#define SERVO0_PIN                            -1  // 11 // PB5 ** Pin24 // used for FREEZE_FEATURE
+// #define SERVO1_PIN                            12  // PB6 ** Pin25 // used for spindle
 
 #define SPINDLE_LASER_PWM_PIN                  8  // heated Bed, PH5 ** Pin17 ** PWM8  **Hardware PWM
 #define SPINDLE_LASER_ENA_PIN                 12  // PB6 ** Pin25
