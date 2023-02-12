@@ -830,7 +830,7 @@
 
 //#define SENSORLESS_BACKOFF_MM  { 2, 2, 0 }  // (mm) Backoff from endstops before sensorless homing
 
-#define HOMING_BUMP_MM      { 4, 4, 3 }       // (mm) Backoff from endstops after first bump
+#define HOMING_BUMP_MM      { 4, 4, 2 }       // (mm) Backoff from endstops after first bump
 #define HOMING_BUMP_DIVISOR { 4, 4, 4 }       // Re-Bump Speed Divisor (Divides the Homing Feedrate)
 
 //#define HOMING_BACKOFF_POST_MM { 2, 2, 2 }  // (mm) Backoff from endstops after homing
@@ -2177,10 +2177,10 @@
  * and optionally G38.4 and G38.5 (probe away from target).
  * Set MULTIPLE_PROBING for G38 to probe more than once.
  */
-//#define G38_PROBE_TARGET
+#define G38_PROBE_TARGET
 #if ENABLED(G38_PROBE_TARGET)
   //#define G38_PROBE_AWAY        // Include G38.4 and G38.5 to probe away from target
-  #define G38_MINIMUM_MOVE 0.0275 // (mm) Minimum distance that will produce a move.
+  #define G38_MINIMUM_MOVE 0.04 // (mm) Minimum distance that will produce a move.
 #endif
 
 // Moves (or segments) with fewer steps than this will be joined with the next move
@@ -3868,23 +3868,33 @@
   #define CUSTOM_MENU_MAIN_SCRIPT_DONE "M117 User Script Done"
   #define CUSTOM_MENU_MAIN_SCRIPT_AUDIBLE_FEEDBACK
   #define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
-  #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
+  #define CUSTOM_MENU_MAIN_ONLY_IDLE       // Only show custom menu when the machine is idle
 
-  #define MAIN_MENU_ITEM_1_DESC "Set Z to 0, move Z up"
+  #define MAIN_MENU_ITEM_1_DESC "Set Z to 0, Z up"
   #define MAIN_MENU_ITEM_1_GCODE "G92 Z0\nG0 Z20"
   //#define MAIN_MENU_ITEM_1_CONFIRM          // Show a confirmation dialog before this action
 
   #define MAIN_MENU_ITEM_2_DESC "Set X to 0"
   #define MAIN_MENU_ITEM_2_GCODE "G92 X0"
-  //#define MAIN_MENU_ITEM_2_CONFIRM
 
   #define MAIN_MENU_ITEM_3_DESC "Set Y to 0"
   #define MAIN_MENU_ITEM_3_GCODE "G92 Y0"
-  //#define MAIN_MENU_ITEM_3_CONFIRM
 
-  #define MAIN_MENU_ITEM_4_DESC "Set X,Y to 10,10"
-  #define MAIN_MENU_ITEM_4_GCODE "G92 X10 Y10"
-  //#define MAIN_MENU_ITEM_4_CONFIRM
+  #define MAIN_MENU_ITEM_4_DESC "Set X,Y to 0,0"
+  #define MAIN_MENU_ITEM_4_GCODE "G92 X0 Y0"
+
+  #define MAIN_MENU_ITEM_5_DESC "ProbeX+,set -3, Z up"
+  #define MAIN_MENU_ITEM_5_GCODE "G38.2 X400 F500\nG92 X-3\nG91\nG1 X-5\nG0 Z30\nG1 X5\nG90"
+  #define MAIN_MENU_ITEM_6_DESC "ProbeY+,set -3, Z up"
+  #define MAIN_MENU_ITEM_6_GCODE "G38.2 Y400 F500\nG92 Y-3\nG91\nG1 Y-5\nG0 Z30\nG1 Y5\nG90"
+  #define MAIN_MENU_ITEM_7_DESC "ProbeZ-, set 0, Z up"
+  #define MAIN_MENU_ITEM_7_GCODE "G38.2 Z20 F100\nG92 Z0\nG0 Z20"
+
+  #define MAIN_MENU_ITEM_8_DESC "Reset native coord."
+  #define MAIN_MENU_ITEM_8_GCODE "G92.1"
+
+  #define MAIN_MENU_ITEM_9_DESC "Set X,Y to 10,10"
+  #define MAIN_MENU_ITEM_9_GCODE "G92 X10 Y10"
 
   //#define MAIN_MENU_ITEM_5_DESC "Home & Info"
   //#define MAIN_MENU_ITEM_5_GCODE "G28\nM503"
