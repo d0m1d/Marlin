@@ -1,7 +1,7 @@
 /**
  * My MPCNC config V2.0.x, DD
- *  atmega2560, MKS Base V1.4, A4982
- *  with spindle PWM and enable
+ *  atmega2560, MKS Base V1.4, A4982 (currents X/Y/X2/Y2: 1A (0.8V), Z: 0.88A)
+ *  with spindle PWM, enable and freeze pin
  * 
  * 
  * Marlin 3D Printer Firmware
@@ -955,11 +955,11 @@
  * marlin stepping modes: 0-10kHz: single steps, 10-20kHz: double steps, above 20kHz: quad stepping
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 150, 150, 12 }
+#define DEFAULT_MAX_FEEDRATE          { 150, 150, 5 } // old: Z12 (stalling if no acceleration [freeze feature])
 
 #define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
-  #define MAX_FEEDRATE_EDIT_VALUES    { 250, 250, 20 } // ...or, set your own edit limits
+  #define MAX_FEEDRATE_EDIT_VALUES    { 150, 150, 12 } // old: 250,250,20
 #endif
 
 /**
@@ -983,9 +983,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          80    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  80    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   80    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION          50    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  50    // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION   50    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -997,8 +997,8 @@
  */
 #define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK  2.5
-  #define DEFAULT_YJERK  2.5
+  #define DEFAULT_XJERK  0.3
+  #define DEFAULT_YJERK  0.3
   #define DEFAULT_ZJERK  0.3
   //#define DEFAULT_IJERK  0.3
   //#define DEFAULT_JJERK  0.3

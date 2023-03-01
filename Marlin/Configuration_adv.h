@@ -3873,28 +3873,30 @@
   #define MAIN_MENU_ITEM_1_DESC "Set Z to 0, Z up"
   #define MAIN_MENU_ITEM_1_GCODE "G92 Z0\nG0 Z20"
   //#define MAIN_MENU_ITEM_1_CONFIRM          // Show a confirmation dialog before this action
-
   #define MAIN_MENU_ITEM_2_DESC "Set X to 0"
   #define MAIN_MENU_ITEM_2_GCODE "G92 X0"
-
   #define MAIN_MENU_ITEM_3_DESC "Set Y to 0"
   #define MAIN_MENU_ITEM_3_GCODE "G92 Y0"
 
-  #define MAIN_MENU_ITEM_4_DESC "Set X,Y to 0,0"
-  #define MAIN_MENU_ITEM_4_GCODE "G92 X0 Y0"
-
+  #define MAIN_MENU_ITEM_4_DESC "ProbeZ-X+Y+, set -3"
+  #define MAIN_MENU_ITEM_4_GCODE "G38.2 Z20 F150\nG92 Z0\nG0 Z5\nG91\nG0 X-35\nG0 Z-10\nG38.2 X400 F400\nG92 X-3\nG1 X-5\nG0 Z10\nG1 X15 Y-35 F400\nG0 Z-10\nG38.2 Y400 F400\nG92 Y-3\nG1 Y-5\nG90\nG0 Z10\nG0 X0 Y0"
+  
   #define MAIN_MENU_ITEM_5_DESC "ProbeX+,set -3, Z up"
-  #define MAIN_MENU_ITEM_5_GCODE "G38.2 X400 F500\nG92 X-3\nG91\nG1 X-5\nG0 Z30\nG1 X5\nG90"
+  #define MAIN_MENU_ITEM_5_GCODE "G38.2 X400 F400\nG92 X-3\nG91\nG1 X-5\nG0 Z30\nG1 X5\nG90"
   #define MAIN_MENU_ITEM_6_DESC "ProbeY+,set -3, Z up"
-  #define MAIN_MENU_ITEM_6_GCODE "G38.2 Y400 F500\nG92 Y-3\nG91\nG1 Y-5\nG0 Z30\nG1 Y5\nG90"
+  #define MAIN_MENU_ITEM_6_GCODE "G38.2 Y400 F400\nG92 Y-3\nG91\nG1 Y-5\nG0 Z30\nG1 Y5\nG90"
   #define MAIN_MENU_ITEM_7_DESC "ProbeZ-, set 0, Z up"
-  #define MAIN_MENU_ITEM_7_GCODE "G38.2 Z20 F100\nG92 Z0\nG0 Z20"
+  #define MAIN_MENU_ITEM_7_GCODE "G38.2 Z20 F150\nG92 Z0\nG0 Z40"
 
   #define MAIN_MENU_ITEM_8_DESC "Reset native coord."
   #define MAIN_MENU_ITEM_8_GCODE "G92.1"
 
-  #define MAIN_MENU_ITEM_9_DESC "Set X,Y to 10,10"
-  #define MAIN_MENU_ITEM_9_GCODE "G92 X10 Y10"
+  #define MAIN_MENU_ITEM_9_DESC "Set X,Y to 0,0"
+  #define MAIN_MENU_ITEM_9_GCODE "G92 X0 Y0"
+
+  #define MAIN_MENU_ITEM_10_DESC "Set X,Y to 10,10"
+  #define MAIN_MENU_ITEM_10_GCODE "G92 X10 Y10"
+
 
   //#define MAIN_MENU_ITEM_5_DESC "Home & Info"
   //#define MAIN_MENU_ITEM_5_GCODE "G28\nM503"
