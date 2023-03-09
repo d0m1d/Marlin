@@ -35,7 +35,8 @@
 //
 // Heaters / Fans
 //
-#define FAN_PIN                                9  // PH6 ** Pin18 ** PWM9
+#define CONTROLLER_FAN_PIN                     9  // PH6 ** Pin18 ** PWM9
+#define FAN_PIN                               42  // dummy PL7 ** Pin42; old 9; -1 leads to compile error
 #define FAN1_PIN                              -1  // dummy wg. RAMPS.h
 
 // Other Mods
