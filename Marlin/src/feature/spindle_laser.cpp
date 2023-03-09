@@ -136,9 +136,10 @@ void SpindleLaser::apply_power(const uint8_t opwr) {
         set_ocr(opwr);
         isReadyForUI = true;
       }
-      else
+      else {
         ocr_off();
         isReadyForUI = false; // from old version
+      }
     #elif ENABLED(SPINDLE_SERVO)
       MOVE_SERVO(SPINDLE_SERVO_NR, power);
     #else
