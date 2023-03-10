@@ -1,7 +1,7 @@
 /**
  * My MPCNC config V2.0.x, DD
  *  atmega2560, MKS Base V1.4, A4982
- *  with spindle PWM, enable and freeze pin
+ *  with spindle PWM, enable and freeze pin, as well as air assist and air evac. pin and auto controller fan
  *  stepper current:
  *      X/Y/X2/Y2: 1.4Aeff/2Apeak, Z: 0.95Aeff/1.3Ap (see 'notes motor current.txt' under Schematics)
  *          => ~6W Kühlleistung notwendig; mit 2Aeff => ~10W
