@@ -864,7 +864,7 @@
 
   // Safety: The probe needs time to recognize the command.
   //         Minimum command delay (ms). Enable and increase if needed.
-  #define BLTOUCH_DELAY 500
+  #define BLTOUCH_DELAY 800
 
   /**
    * Settings for BLTOUCH Classic 1.2, 1.3 or BLTouch Smart 1.0, 2.0, 2.2, 3.0, 3.1, and most clones:
@@ -3874,7 +3874,7 @@
   #define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
   #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
 
-  #define MAIN_MENU_ITEM_1_DESC "Preheat light "  // Power On, set bed to 30°C, hotend to 50°C (not waiting)
+  #define MAIN_MENU_ITEM_1_DESC "Preheat B/H=30/50 "  // Power On, set bed to 30°C, hotend to 50°C (not waiting)
   #define MAIN_MENU_ITEM_1_GCODE "M80\nM140 S30\nM104 S50"
   //#define MAIN_MENU_ITEM_1_CONFIRM
 
