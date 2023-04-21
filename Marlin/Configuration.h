@@ -3,7 +3,7 @@
  *  atmega2560, MKS Base V1.4, A4982
  *  with spindle PWM, enable and freeze pin, as well as air assist and air evac. pin and auto controller fan
  *  stepper current:
- *      X/Y/X2/Y2: 1.4Aeff/2Apeak, Z: 0.95Aeff/1.3Ap (see 'notes motor current.txt' under Schematics)
+ *      X/Y/X2/Y2: 1.7Aeff/2.4Apeak, Z: 0.95Aeff/1.3Ap (see 'notes motor current.txt' under Schematics)
  *          => ~6W Kühlleistung notwendig; mit 2Aeff => ~10W
  * 
  * 
@@ -948,8 +948,9 @@
  * 16er microstepping, 200fullsteps/U, 16 teeth GT2 pulley for xy
  * 16er microstepping, 200fullsteps/U, 2mm ACME for z
  * steps calibrated (X: +-0.2/430mm, Y: +-0.2/430mm, Z: +-0.1/99mm) 28.05.2022
+ * new Z: 4mm ACME (21.04.23)
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100.03, 100.04, 1601 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100.03, 100.04, 800 }
 
 /**
  * Default Max Feed Rate (mm/s)
