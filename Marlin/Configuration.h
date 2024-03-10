@@ -1,6 +1,6 @@
 /**
  * My MPCNC config V2.0.x, DD
- *  atmega2560, MKS Base V1.4, A4982
+ *  stm32f407, MKS Eagle V1.0, TMC2209 (Uart)
  *  with spindle PWM, enable and freeze pin, as well as air assist and air evac. pin and auto controller fan
  *  stepper current:
  *      X/Y/X2/Y2: 1.7Aeff/2.4Apeak, Z: 0.95Aeff/1.3Ap (see 'notes motor current.txt' under Schematics)
@@ -104,7 +104,7 @@
 
 // Choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_MKS_BASE_14 // BOARD_MKS_BASE_14 already included in marlin 2.0
+  #define MOTHERBOARD BOARD_MKS_EAGLE
 #endif
 
 /**
@@ -115,7 +115,7 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 0
+#define SERIAL_PORT -1
 
 /**
  * Serial Port Baud Rate
@@ -128,7 +128,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 //#define BAUD_RATE_GCODE     // Enable G-code M575 to set the baud rate
 
 /**
@@ -880,11 +880,11 @@
  *          TMC5130, TMC5130_STANDALONE, TMC5160, TMC5160_STANDALONE
  * :['A4988', 'A5984', 'DRV8825', 'LV8729', 'L6470', 'L6474', 'POWERSTEP01', 'TB6560', 'TB6600', 'TMC2100', 'TMC2130', 'TMC2130_STANDALONE', 'TMC2160', 'TMC2160_STANDALONE', 'TMC2208', 'TMC2208_STANDALONE', 'TMC2209', 'TMC2209_STANDALONE', 'TMC26X', 'TMC26X_STANDALONE', 'TMC2660', 'TMC2660_STANDALONE', 'TMC5130', 'TMC5130_STANDALONE', 'TMC5160', 'TMC5160_STANDALONE']
  */
-#define X_DRIVER_TYPE  A4988
-#define Y_DRIVER_TYPE  A4988
-#define Z_DRIVER_TYPE  A4988
-#define X2_DRIVER_TYPE A4988
-#define Y2_DRIVER_TYPE A4988
+#define X_DRIVER_TYPE  TMC2209
+#define Y_DRIVER_TYPE  TMC2209
+#define Z_DRIVER_TYPE  TMC2209
+#define X2_DRIVER_TYPE TMC2209
+#define Y2_DRIVER_TYPE TMC2209
 //#define Z2_DRIVER_TYPE A4988
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
@@ -950,7 +950,7 @@
  * steps calibrated (X: +-0.2/430mm, Y: +-0.2/430mm, Z: +-0.1/99mm) 28.05.2022
  * new Z: 4mm ACME (21.04.23)
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100.03, 100.04, 800 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100.03*X_MICROSTEPS/16, 100.04*Y_MICROSTEPS/16, 800*Z_MICROSTEPS/16 }
 
 /**
  * Default Max Feed Rate (mm/s)

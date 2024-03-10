@@ -23,7 +23,7 @@
 #pragma once
 
 //
-// MKS Robin Nano V3, MKS Eagle pinmap
+// MKS Robin Nano V3, MKS Eagle pinmap, modified for my MPCNC setup (mostly ifndef)
 //
 
 #define HAS_OTG_USB_HOST_SUPPORT                  // USB Flash Drive support
@@ -49,7 +49,9 @@
 //
 // Servos
 //
-#define SERVO0_PIN                          PA8   // Enable BLTOUCH
+#ifndef SERVO0_PIN
+  #define SERVO0_PIN                          PA8   // Enable BLTOUCH
+#endif
 
 //
 // Limit Switches
@@ -131,11 +133,13 @@
 // Heaters / Fans
 //
 #define HEATER_0_PIN                        PE5   // HEATER1
-#define HEATER_1_PIN                        PB0   // HEATER2
-#define HEATER_BED_PIN                      PA0   // HOT BED
+//#define HEATER_1_PIN                        PB0   // HEATER2
+//#define HEATER_BED_PIN                      PA0   // HOT BED
 
-#define FAN_PIN                             PC14  // FAN
-#define FAN1_PIN                            PB1   // FAN1
+#ifndef FAN_PIN
+  #define FAN_PIN                             PC14  // FAN (on pcb: fan1)
+#endif
+//#define FAN1_PIN                            PB1   // FAN1 (on pcb: fan2)
 
 //
 // Thermocouples
